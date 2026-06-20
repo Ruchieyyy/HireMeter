@@ -102,36 +102,37 @@ useEffect(() => {
     }, 90000);
   };
 
-  const analyzeAnswer = async () => {
-    setLoading(true);
-
-  const res = await fetch(
-    "/api/analyze",
-    {
-      method: "POST",
-
-      headers: {
-        "Content-Type":
-          "application/json",
-      },
-
-      body: JSON.stringify({
-        transcript,
-        question,
-      }),
-    }
-  );
-
-  const data = await res.json();
-
-  console.log("FULL DATA:", data);
-
-  if (data.error) {
-    alert(data.error);
-    return;
-  }
+ const analyzeAnswer = async () => {
 
   try {
+
+    setLoading(true);
+
+    const res = await fetch(
+      "/api/analyze",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          transcript,
+          question,
+        }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.error) {
+
+      setLoading(false);
+
+      alert(data.error);
+
+      return;
+    }
 
     const cleaned =
       (data.feedback || "")
@@ -143,19 +144,23 @@ useEffect(() => {
       JSON.parse(cleaned);
 
     setAnalysis(parsed);
-    setLoading(false);
 
   } catch (err) {
-      setLoading(false);
+
     console.error(err);
 
     setFeedback(
-      data.feedback ||
-      "No response received"
+      "Network error. Please try again."
     );
 
+  } finally {
+
+    setLoading(false);
+
   }
+
 };
+  
 
   return (
 
