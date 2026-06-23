@@ -78,10 +78,10 @@ return Response.json({
 ```
 } catch (error) {
 
-  console.error(error);
+  console.error("GROQ ERROR:", error);
 
   return Response.json({
-    error: error.message
+    error: error.message || JSON.stringify(error)
   });
 
 }
