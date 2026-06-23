@@ -25,8 +25,7 @@ export default function Home() {
 
   const [timeLeft, setTimeLeft] =
   useState(90);
-const [timeLeft, setTimeLeft] =
-  useState(90);
+
 const questions = [
 
   // HR
@@ -342,90 +341,95 @@ setCategory(
 
 }, []);
   
+const startListening = () => {
 
-  const startListening = () => {
-    setTranscript("");
-    setAnalysis(null);
-    setFeedback("");
-    const SpeechRecognition =
-      window.SpeechRecognition ||
-      window.webkitSpeechRecognition;
+  setTranscript("");
+  setAnalysis(null);
+  setFeedback("");
 
-    const recognition =
-      new SpeechRecognition();
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
 
-    window.currentRecognition =
-  recognition;
+  const recognition =
+    new SpeechRecognition();
 
-    recognition.continuous = true;
+  window.currentRecognition =
+    recognition;
 
-    recognition.interimResults = true;
+  recognition.continuous = true;
 
-    recognition.lang = "en-US";
+  recognition.interimResults = true;
 
-    recognition.onresult = (event) => {
+  recognition.lang = "en-US";
 
-      let text = "";
+  recognition.onresult = (event) => {
 
-      for (
-        let i = 0;
-        i < event.results.length;
-        i++
-      ) {
+    let text = "";
 
-        text +=
-          event.results[i][0].transcript;
+    for (
+      let i = 0;
+      i < event.results.length;
+      i++
+    ) {
 
-      }
-
-      setTranscript(text);
-
-    };
-
-    recognition.start();
-
-    setTimeLeft(90);
-
-const timer = setInterval(() => {
-
-  setTimeLeft(prev => {
-
-    if (prev <= 1) {
-
-      clearInterval(timer);
-
-      return 0;
+      text +=
+        event.results[i][0].transcript;
 
     }
 
-    return prev - 1;
+    setTranscript(text);
 
-  });
+  };
 
-}, 1000);
+  recognition.start();
+
+  setListening(true);
+
+  setTimeLeft(90);
+
+  const timer = setInterval(() => {
+
+    setTimeLeft(prev => {
+
+      if (prev <= 1) {
+
+        clearInterval(timer);
+
+        return 0;
+
+      }
+
+      return prev - 1;
+
+    });
+
+  }, 1000);
 
   setTimeout(() => {
 
-  recognition.stop();
+    recognition.stop();
 
-  clearInterval(timer);
+    clearInterval(timer);
 
-  setListening(false);
+    setListening(false);
 
-  setTimeLeft(0);
+    setTimeLeft(0);
 
-}, 90000);
+  }, 90000);
 
-if (!transcript.trim()) {
-  alert("Please record an answer first.");
-  return;
-}
+};
 
- const analyzeAnswer = async () => {
+const analyzeAnswer = async () => {
 
   if (!transcript.trim()) {
-    alert("Please record an answer first.");
+
+    alert(
+      "Please record an answer first."
+    );
+
     return;
+
   }
 
   try {
@@ -447,15 +451,15 @@ if (!transcript.trim()) {
       }
     );
 
-    const data = await res.json();
+    const data =
+      await res.json();
 
     if (data.error) {
-
-      setLoading(false);
 
       alert(data.error);
 
       return;
+
     }
 
     const cleaned =
@@ -729,7 +733,6 @@ ${loading
   </p>
 
 </div>
-{analysis && (
 
 <div className="bg-zinc-900 p-6 rounded-2xl mb-6">
 
@@ -751,9 +754,6 @@ ${loading
 
 </div>
 
-)}
-{analysis && (
-
 <div className="bg-zinc-900 p-6 rounded-2xl mb-6">
 
   <h2 className="text-2xl font-bold mb-3">
@@ -774,7 +774,6 @@ ${loading
 
 </div>
 
-)}
 </>
 
 )}
