@@ -76,17 +76,14 @@ return Response.json({
   feedback: response,
 });
 ```
-
 } catch (error) {
 
-```
-console.error(error);
+  console.error(error);
 
-return Response.json({
-  error:
-    "🤖 AI analysis temporarily unavailable."
-});
-```
+  return Response.json({
+    error: error.message
+  });
 
 }
+ 
 }
