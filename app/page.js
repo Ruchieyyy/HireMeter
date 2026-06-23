@@ -23,19 +23,302 @@ export default function Home() {
   const [loading, setLoading] =
   useState(false);
 
+  const [timeLeft, setTimeLeft] =
+  useState(90);
+const [timeLeft, setTimeLeft] =
+  useState(90);
 const questions = [
-  "Tell me about yourself",
-  "What are your strengths?",
-  "Explain OOP concepts",
-  "Why should we hire you?",
-  "Describe a difficult project",
-  "What is DBMS?",
-  "Explain API vs REST API",
+
+  // HR
+  {
+    question: "Tell me about yourself.",
+    category: "HR",
+    difficulty: "Easy",
+  },
+  {
+    question: "Why should we hire you?",
+    category: "HR",
+    difficulty: "Easy",
+  },
+  {
+    question: "What are your strengths?",
+    category: "HR",
+    difficulty: "Easy",
+  },
+  {
+    question: "What is your biggest weakness?",
+    category: "HR",
+    difficulty: "Easy",
+  },
+  {
+    question: "Where do you see yourself in 5 years?",
+    category: "HR",
+    difficulty: "Easy",
+  },
+  {
+    question: "Describe a challenging situation and how you handled it.",
+    category: "HR",
+    difficulty: "Medium",
+  },
+  {
+    question: "Tell me about a time you worked in a team.",
+    category: "HR",
+    difficulty: "Easy",
+  },
+  {
+    question: "How do you handle deadlines and pressure?",
+    category: "HR",
+    difficulty: "Medium",
+  },
+
+  // OOP
+  {
+    question: "Explain the four pillars of Object-Oriented Programming.",
+    category: "OOP",
+    difficulty: "Medium",
+  },
+  {
+    question: "What is polymorphism with an example?",
+    category: "OOP",
+    difficulty: "Medium",
+  },
+  {
+    question: "Difference between abstraction and encapsulation?",
+    category: "OOP",
+    difficulty: "Medium",
+  },
+  {
+    question: "Difference between method overloading and overriding?",
+    category: "OOP",
+    difficulty: "Medium",
+  },
+  {
+    question: "Explain inheritance and its advantages.",
+    category: "OOP",
+    difficulty: "Medium",
+  },
+
+  // Java
+  {
+    question: "What is the difference between JDK, JRE, and JVM?",
+    category: "Java",
+    difficulty: "Medium",
+  },
+  {
+    question: "Explain exception handling in Java.",
+    category: "Java",
+    difficulty: "Medium",
+  },
+  {
+    question: "What are collections in Java?",
+    category: "Java",
+    difficulty: "Medium",
+  },
+  {
+    question: "Difference between ArrayList and LinkedList?",
+    category: "Java",
+    difficulty: "Hard",
+  },
+  {
+    question: "What is multithreading in Java?",
+    category: "Java",
+    difficulty: "Hard",
+  },
+
+  // DBMS
+  {
+    question: "What is DBMS?",
+    category: "DBMS",
+    difficulty: "Easy",
+  },
+  {
+    question: "What is normalization?",
+    category: "DBMS",
+    difficulty: "Hard",
+  },
+  {
+    question: "Difference between SQL and NoSQL databases?",
+    category: "DBMS",
+    difficulty: "Medium",
+  },
+  {
+    question: "What are primary and foreign keys?",
+    category: "DBMS",
+    difficulty: "Easy",
+  },
+  {
+    question: "What is indexing and why is it important?",
+    category: "DBMS",
+    difficulty: "Hard",
+  },
+
+  // SQL
+  {
+    question: "What is the difference between WHERE and HAVING?",
+    category: "SQL",
+    difficulty: "Medium",
+  },
+  {
+    question: "Explain JOINs in SQL.",
+    category: "SQL",
+    difficulty: "Medium",
+  },
+  {
+    question: "What is a subquery?",
+    category: "SQL",
+    difficulty: "Medium",
+  },
+  {
+    question: "Write a query to find the second highest salary.",
+    category: "SQL",
+    difficulty: "Hard",
+  },
+
+  // DSA
+  {
+    question: "Difference between array and linked list?",
+    category: "DSA",
+    difficulty: "Easy",
+  },
+  {
+    question: "Explain binary search and its complexity.",
+    category: "DSA",
+    difficulty: "Medium",
+  },
+  {
+    question: "What is recursion?",
+    category: "DSA",
+    difficulty: "Easy",
+  },
+  {
+    question: "What is a stack and where is it used?",
+    category: "DSA",
+    difficulty: "Easy",
+  },
+  {
+    question: "What is a queue and where is it used?",
+    category: "DSA",
+    difficulty: "Easy",
+  },
+  {
+    question: "Explain hashing.",
+    category: "DSA",
+    difficulty: "Medium",
+  },
+  {
+    question: "Difference between BFS and DFS.",
+    category: "DSA",
+    difficulty: "Hard",
+  },
+
+  // Operating Systems
+  {
+    question: "What is a process and a thread?",
+    category: "Operating Systems",
+    difficulty: "Medium",
+  },
+  {
+    question: "What is multithreading?",
+    category: "Operating Systems",
+    difficulty: "Medium",
+  },
+  {
+    question: "What is a deadlock?",
+    category: "Operating Systems",
+    difficulty: "Hard",
+  },
+  {
+    question: "Explain CPU scheduling.",
+    category: "Operating Systems",
+    difficulty: "Hard",
+  },
+  {
+    question: "What is virtual memory?",
+    category: "Operating Systems",
+    difficulty: "Medium",
+  },
+
+  // Computer Networks
+  {
+    question: "What is the OSI model?",
+    category: "Computer Networks",
+    difficulty: "Medium",
+  },
+  {
+    question: "Difference between TCP and UDP.",
+    category: "Computer Networks",
+    difficulty: "Medium",
+  },
+  {
+    question: "What happens when you type a URL in a browser?",
+    category: "Computer Networks",
+    difficulty: "Hard",
+  },
+  {
+    question: "What is DNS?",
+    category: "Computer Networks",
+    difficulty: "Easy",
+  },
+
+  // Web Development
+  {
+    question: "Difference between API and REST API?",
+    category: "Web Development",
+    difficulty: "Medium",
+  },
+  {
+    question: "What is JWT authentication?",
+    category: "Web Development",
+    difficulty: "Hard",
+  },
+  {
+    question: "Difference between authentication and authorization?",
+    category: "Web Development",
+    difficulty: "Medium",
+  },
+  {
+    question: "What are HTTP methods?",
+    category: "Web Development",
+    difficulty: "Easy",
+  },
+
+  // Projects
+  {
+    question: "Describe your most challenging project.",
+    category: "Projects",
+    difficulty: "Medium",
+  },
+  {
+    question: "What technologies did you use in your latest project?",
+    category: "Projects",
+    difficulty: "Easy",
+  },
+  {
+    question: "What problem does your project solve?",
+    category: "Projects",
+    difficulty: "Medium",
+  },
+  {
+    question: "What would you improve in your project if given more time?",
+    category: "Projects",
+    difficulty: "Medium",
+  },
+  {
+    question: "What was your biggest technical challenge during development?",
+    category: "Projects",
+    difficulty: "Hard",
+  },
+
 ];
 
 const [question, setQuestion] =
   useState("");
+const [difficulty, setDifficulty] =
+  useState("");
 
+const [category, setCategory] =
+  useState("");
+  
 useEffect(() => {
 
   const randomQuestion =
@@ -45,7 +328,17 @@ useEffect(() => {
       )
     ];
 
-  setQuestion(randomQuestion);
+setQuestion(
+  randomQuestion.question
+);
+
+setDifficulty(
+  randomQuestion.difficulty
+);
+
+setCategory(
+  randomQuestion.category
+);
 
 }, []);
   
@@ -91,18 +384,49 @@ useEffect(() => {
 
     recognition.start();
 
-    setListening(true);
+    setTimeLeft(90);
 
-    setTimeout(() => {
+const timer = setInterval(() => {
 
-      recognition.stop();
+  setTimeLeft(prev => {
 
-      setListening(false);
+    if (prev <= 1) {
 
-    }, 90000);
-  };
+      clearInterval(timer);
+
+      return 0;
+
+    }
+
+    return prev - 1;
+
+  });
+
+}, 1000);
+
+  setTimeout(() => {
+
+  recognition.stop();
+
+  clearInterval(timer);
+
+  setListening(false);
+
+  setTimeLeft(0);
+
+}, 90000);
+
+if (!transcript.trim()) {
+  alert("Please record an answer first.");
+  return;
+}
 
  const analyzeAnswer = async () => {
+
+  if (!transcript.trim()) {
+    alert("Please record an answer first.");
+    return;
+  }
 
   try {
 
@@ -180,11 +504,33 @@ useEffect(() => {
         </h2>
 
         <p className="text-lg">
-          {question}
-        </p>
+  {question}
+</p>
+
+<div className="flex gap-3 mt-3">
+
+  <span className="bg-blue-500/20 px-3 py-1 rounded-full text-sm">
+    📚 {category}
+  </span>
+
+  <span className="bg-purple-500/20 px-3 py-1 rounded-full text-sm">
+    🎯 {difficulty}
+  </span>
+
+</div>
 
       </div>
+<div className="bg-zinc-900 p-4 rounded-xl mb-6 flex justify-between items-center">
 
+  <span className="text-zinc-300">
+    Interview Timer
+  </span>
+
+  <span className="text-2xl font-bold text-emerald-400">
+    {timeLeft}s
+  </span>
+
+</div>
       <button
         onClick={startListening}
         className="bg-blue-500 hover:bg-blue-600 hover:scale-105 transition-all duration-300 px-6 py-3 rounded-xl mb-6 shadow-lg shadow-blue-500/30"
@@ -383,7 +729,52 @@ ${loading
   </p>
 
 </div>
+{analysis && (
 
+<div className="bg-zinc-900 p-6 rounded-2xl mb-6">
+
+  <h2 className="text-2xl font-bold mb-3">
+    💪 Key Strengths
+  </h2>
+
+  <ul className="list-disc pl-5">
+
+    {analysis.strengths?.map(
+      (item, index) => (
+        <li key={index}>
+          {item}
+        </li>
+      )
+    )}
+
+  </ul>
+
+</div>
+
+)}
+{analysis && (
+
+<div className="bg-zinc-900 p-6 rounded-2xl mb-6">
+
+  <h2 className="text-2xl font-bold mb-3">
+    📈 Areas for Improvement
+  </h2>
+
+  <ul className="list-disc pl-5">
+
+    {analysis.improvements?.map(
+      (item, index) => (
+        <li key={index}>
+          {item}
+        </li>
+      )
+    )}
+
+  </ul>
+
+</div>
+
+)}
 </>
 
 )}
